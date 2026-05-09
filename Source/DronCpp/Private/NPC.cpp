@@ -20,7 +20,7 @@ void ANPC::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 }
-
+//Выбор и движение в рандом локацию
 void ANPC::MoveToRandomLocation()
 {
 	AAIController* AIC = Cast<AAIController>(GetController());

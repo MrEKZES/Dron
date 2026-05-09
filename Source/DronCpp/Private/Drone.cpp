@@ -24,7 +24,7 @@ void ADrone::BeginPlay()
 {
     Super::BeginPlay();
 
-    // Поиск NPC с задержкой
+    //Поиск NPC с задержкой (как вылюбите говорить Алексей "Даю время движку просраться")
     FTimerHandle StartDelayHandle;
     GetWorldTimerManager().SetTimer(StartDelayHandle, [this]()
     {
@@ -32,7 +32,7 @@ void ADrone::BeginPlay()
         GetWorldTimerManager().SetTimer(FindNPCTimerHandle, this, &ADrone::FindNearestNPC, 5.0f, true);
     }, 1.0f, false);
 
-    // Устанавливаем камеру как ViewTarget
+    //Установка камеры как ViewTarget
     APlayerController* PC = GetWorld()->GetFirstPlayerController();
     if (PC)
     {
@@ -60,7 +60,7 @@ void ADrone::Tick(float DeltaTime)
         LookAtNPC();
     }
 }
-
+//Поиск NPC
 void ADrone::FindNearestNPC()
 {
     if (TargetNPC && IsValid(TargetNPC))
@@ -77,7 +77,7 @@ void ADrone::FindNearestNPC()
         CurrentAngleDegrees = 0.0f;
     }
 }
-
+// Движение дрона
 void ADrone::UpdateDronePosition(float DeltaTime)
 {
     if (!TargetNPC) return;
@@ -97,7 +97,7 @@ void ADrone::UpdateDronePosition(float DeltaTime)
     
     SetActorLocation(FVector(X, Y, Z));
 }
-
+//Захват NPC в ViewTarget
 void ADrone::LookAtNPC()
 {
     if (!TargetNPC) return;
@@ -113,7 +113,7 @@ void ADrone::SetAsViewTarget(APlayerController* PC)
         PC->SetViewTarget(this);
     }
 }
-
+//Скрины
 void ADrone::TakeScreenshot()
 {
     if (!bEnableScreenshots)
